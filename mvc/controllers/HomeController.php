@@ -7,11 +7,8 @@ use App\Providers\View;
 class HomeController {
     
     public function index(){
-       // $data = 'Hello from HomeController';
-        $model = new ExampleModel;
-        $data = $model->getData();
-        //include 'views/home.php';
-       View::render('home', ['var' => $data]);
+     
+       View::render('home' );
     }
 
     public function home(){
