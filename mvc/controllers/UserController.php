@@ -40,7 +40,7 @@ class UserController
         $validator->field('email', $data['email'])->min(2)->max(100)->email()->unique('User');
         $validator->field('mot_de_passe', $data['mot_de_passe'])->min(6)->max(100);
         $validator->field('username', $data['username'])->required()->max(100)->email()->unique('User');
-        // $validator->field('privilege_stampee_id', $data['privilege_stampee_id'], 'Privilege')->required();
+        $validator->field('privilege_stampee_id', $data['privilege_stampee_id'], 'Privilege')->required();
 
 
 
@@ -48,6 +48,7 @@ class UserController
             $user = new User;
 
             $data['mot_de_passe'] = $user->hashPassword($data['mot_de_passe']);
+            echo $data;
             // $data['email'] = $data['username'];
             $insert = $user->insert($data);
             if ($insert) {

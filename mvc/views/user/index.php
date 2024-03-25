@@ -1,6 +1,7 @@
 {{ include('layouts/header.php', {title: 'User'})}}
 <div>
-    <h1>Liste Utilisateurs</h1>
+
+    <h1>Bienvenue {{user.username}}</h1>
     <div>
         {% for user in user %}
         <div>
@@ -15,11 +16,3 @@
     <a href="{{ base }}/client/create" class="btn">Client Create</a>
 </div>
 {% include('layouts/footer.php') %}
-
-
-
-
-
-
-
-
