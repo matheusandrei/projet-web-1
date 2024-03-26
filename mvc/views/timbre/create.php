@@ -10,10 +10,10 @@
         </ul>
     </div>
     {% endif %}
-    <form method="post" action="{{ base }}/ajouter-timbre">
+    <form method="post" method="post" enctype="multipart/form-data">
         <h2>Ajouter un timbre</h2>
         <label>Titre
-            <input type="text" name="titre" value="{{ timbre.titre }}">
+            <input type=" text" name="titre" value="{{ timbre.titre }}">
         </label>
         <label>Date
             <input type="date" name="date" value="{{ timbre.date }}">
@@ -23,6 +23,9 @@
         </label>
         <label>Description
             <textarea name="description">{{ timbre.description }}</textarea>
+        </label>
+        <label>Etat
+            <input type="text" name="etat" value="{{ timbre.etat }}">
         </label>
         <label>Pays
             <input type="text" name="pays" value="{{ timbre.pays }}">
@@ -42,9 +45,17 @@
         <label>ID de l'enchère
             <input type="text" name="stampee_enchere_id" value="{{ timbre.stampee_enchere_id }}">
         </label>
-        <label>ID de l'utilisateur
-            <input type="text" name="stampee_utilisateur_id" value="{{ timbre.stampee_utilisateur_id }}">
+        <label>Image Principale:
+            <input type="file" name="image_principale">
         </label>
+        {% if errors.image_principale is defined %}
+        <span class="error">{{ errors.image_principale }}</span>
+        {% endif %}
+
+        <label>Images secondaire:
+            <input type="file" name="image_secondaire[]" multiple>
+        </label>
+        <input type="hidden" name="stampee_utilisateur_id" value="{{session.user_id}}">
         <input type="submit" class="btn" value="Ajouter">
     </form>
 </div>

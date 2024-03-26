@@ -18,6 +18,7 @@ class Validator {
         return $this;
     }
 ////////////// VALIDATION RULES  ////////////////////////////
+
     public function required() {
         if(empty($this->value)){
             $this->errors[$this->key]="$this->name is required.";

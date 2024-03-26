@@ -8,7 +8,7 @@ class Timbre extends CRUD
 {
     protected $table = "stampee_timbre";
     protected $primaryKey = "id";
-    protected $fillable = ['titre', 'date', 'couleur', 'description', 'pays', 'dimensions', 'certifie', 'categorie', 'stampee_enchere_id', 'stampee_utilisateur_id'];
+    protected $fillable = ['titre', 'date', 'couleur', 'description', 'pays', 'dimensions','etat', 'certifie', 'categorie', 'stampee_enchere_id', 'stampee_utilisateur_id'];
 
 
 }
