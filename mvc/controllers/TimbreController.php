@@ -21,44 +21,45 @@ class TimbreController
         return View::render('timbre/create');
     }
 
-    
+
 
     public function store($data)
     {
-         // Validação dos dados
-         $validator = new Validator;
-         $validator->field('titre', $data['titre'])->required()->max(100);
-         $validator->field('date', $data['date'])->required();
-         $validator->field('description', $data['description'])->required()->max(250);
-         $validator->field('etat', $data['etat'])->required()->max(45);
-         $validator->field('certifie', $data['certifie']);
-         $validator->field('categorie', $data['categorie'])->required()->max(45);
-         $validator->field('stampee_enchere_id', $data['stampee_enchere_id'])->required();
-         $validator->field('stampee_utilisateur_id', $data['stampee_utilisateur_id'])->required();
-        
+        var_dump($data);
+        // Validação dos dados
+        $validator = new Validator;
+        $validator->field('titre', $data['titre'])->required()->max(100);
+        $validator->field('date', $data['date'])->required();
+        $validator->field('description', $data['description'])->required()->max(250);
+        $validator->field('etat', $data['etat'])->required()->max(45);
+        $validator->field('certifie', $data['certifie']);
+        $validator->field('categorie', $data['categorie'])->required()->max(45);
+        $validator->field('stampee_enchere_id', $data['stampee_enchere_id'])->required();
+        $validator->field('stampee_utilisateur_id', $data['stampee_utilisateur_id'])->required();
+
         if ($validator->isSuccess()) {
             $timbre = new Timbre;
             $insert = $timbre->insert($data);
-            
+
             if ($insert) {
                 // Vérifie si le fichier a été correctement téléchargé
                 if (isset($_FILES['image_principale']) && $_FILES['image_principale']['error'] === UPLOAD_ERR_OK) {
                     // Définit le chemin du répertoire où le fichier sera stocké
-                    $target_dir = "upload/";
-    
+                    $target_dir = "images/";
+
                     // Définit le nom du fichier de l'image principale
                     $image_name = basename($_FILES['image_principale']['name']);
-    
+
                     // Définit le chemin complet du fichier
                     $target_file = $target_dir . $image_name;
-    
+
                     // Déplace le fichier vers le répertoire de destination
                     if (move_uploaded_file($_FILES['image_principale']['tmp_name'], $target_file)) {
                         // Si le fichier a été déplacé avec succès, insère le nom du fichier dans la base de données
                         $img = new Image;
                         $imgChamps = ['stampee_timbre_id' => $insert, 'image_principale' => $image_name];
                         $insert_img = $img->insert($imgChamps);
-    
+
                         if ($insert_img) {
                             return View::redirect('timbre/index');
                         } else {
@@ -81,7 +82,6 @@ class TimbreController
             // Si des erreurs de validation se produisent, retournez à la page de création avec les erreurs
             $errors = $validator->getErrors();
             return View::render('timbre/create', ['errors' => $errors, 'timbre' => $data]);
-         }
+        }
     }
-
 }
