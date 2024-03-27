@@ -33,6 +33,7 @@ class TimbreController
         $validator->field('description', $data['description'])->required()->max(250);
         $validator->field('etat', $data['etat'])->required()->max(45);
         $validator->field('certifie', $data['certifie']);
+        $validator->field('prix', $data['prix'])->required();
         $validator->field('categorie', $data['categorie'])->required()->max(45);
         $validator->field('stampee_enchere_id', $data['stampee_enchere_id'])->required();
         $validator->field('stampee_utilisateur_id', $data['stampee_utilisateur_id'])->required();
@@ -60,6 +61,7 @@ class TimbreController
                         $imgChamps = ['stampee_timbre_id' => $insert, 'image_principale' => $image_name];
                         $insert_img = $img->insert($imgChamps);
 
+                        print_r($imgChamps);
                         if ($insert_img) {
                             return View::redirect('timbre/index');
                         } else {
@@ -67,11 +69,11 @@ class TimbreController
                             return View::render('error');
                         }
                     } else {
-                        // Si une erreur se produit lors du déplacement du fichier vers le répertoire de destination, vous pouvez le gérer ici
+
                         return View::render('error');
                     }
                 } else {
-                    // Si le fichier n'a pas été correctement téléchargé, vous pouvez le gérer ici
+
                     return View::render('error');
                 }
             } else {
@@ -82,6 +84,35 @@ class TimbreController
             // Si des erreurs de validation se produisent, retournez à la page de création avec les erreurs
             $errors = $validator->getErrors();
             return View::render('timbre/create', ['errors' => $errors, 'timbre' => $data]);
+        }
+    }
+    public function index()
+    {
+
+        $timbre = new Timbre;
+        $select = $timbre->select('titre');
+        if ($select) {
+            return View::render('timbre/index', ['timbre' => $select]);
+        }
+        return View::render('error');
+    }
+    public function show($data = [])
+    {
+
+
+        if (isset($data['id']) && $data['id'] != null) {
+            $timbre = new Timbre;
+            $selectId = $timbre->selectId($data['id']);
+            $image = $timbre->getImg($data['id']);
+
+
+            if ($selectId) {
+                return View::render('timbre/show', ['timbre' => $selectId, 'image' => $image]);
+            } else {
+                return View::render('error');
+            }
+        } else {
+            return View::render('error', ['message' => 'Could not find this data']);
         }
     }
 }
