@@ -10,7 +10,7 @@
         <p><span>Certifié:</span> {{ timbre.certifie }}</p>
         <p><span>Prix:</span> {{ timbre.prix }}</p>
 
-        <img src="{{base}}/{{image}}">
+        <img src="{{base}}/images/{{image}}">
 
         <div class="btns-editer-produit">
             <a href="{{base}}/product/edit?id={{product.id}}" class="btn block">Edit</a>
