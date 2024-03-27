@@ -14,7 +14,7 @@
 <body>
     <header>
         <div class="header-container">
-            <a href="{{base}}"><img src="assets/img/logos/logoLord 1.png" alt="logos" /></a>
+            <a href="{{base}}"><img src="{{asset}}/css/img/logos/logoLord 1.png" alt="logos" /></a>
             <form action="/" method="get">
                 <label for="recherche" class="sr-only">Rechercher :</label>
                 <input type="text" id="recherche" name="recherche" placeholder="Rechercher" />

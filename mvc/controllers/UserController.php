@@ -33,7 +33,7 @@ class UserController
 
     public function store($data)
     {
-        var_dump($data);
+
         //if($_SESSION['privilege_id'] == 1){
         $validator = new Validator;
         $validator->field('nom', $data['nom'])->min(2)->max(100);
