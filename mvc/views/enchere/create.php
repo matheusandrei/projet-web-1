@@ -12,38 +12,27 @@
     {% endif %}
     <form method="post" enctype="multipart/form-data">
         <h2>Ajouter une enchère</h2>
-        <label>Prix Courant
-            <input type="text" name="prix_courant" value="{{ enchere.prix_courant }}">
+        <label>Prix Initial
+            <input type="number" name="prix" value="{{ enchere.prix }}">
         </label>
-        <label>Date de Début
-            <input type="date" name="date_debut" value="{{ enchere.date_debut }}">
+        <label>Date de début
+            <input type="datetime-local" name="date_debut">
         </label>
-        <label>Date de Fin
-            <input type="date" name="date_fin" value="{{ enchere.date_fin }}">
-        </label>
-        <label>Actif
-            <select name="actif">
-                <option value="1" {% if enchere.actif == 1 %} selected {% endif %}>Oui</option>
-                <option value="0" {% if enchere.actif == 0 %} selected {% endif %}>Non</option>
-            </select>
-        </label>
-        <label>Coup de Cœur
-            <select name="coup_de_coeur">
-                <option value="1" {% if enchere.coup_de_coeur == 1 %} selected {% endif %}>Oui</option>
-                <option value="0" {% if enchere.coup_de_coeur == 0 %} selected {% endif %}>Non</option>
-            </select>
+        <label>Date de fin
+            <input type="datetime-local" name="date_fin">
         </label>
         <label>Timbre
             <select name="stampee_timbre_id">
                 <!-- Opções de Timbre podem ser preenchidas dinamicamente dependendo da sua lógica -->
                 <!-- Exemplo: -->
-                <!-- {% for timbre in timbres %}
-                <option value="{{ timbre.id }}">{{ timbre.titre }}</option>
-                {% endfor %} -->
+                < {% for timbre in timbres %} <option value="{{ timbre.id }}">{{ timbre.titre }}</option>
+                    {% endfor %}
             </select>
         </label>
+        <input type="hidden" name="coup_de_coeur" value="0">
+        <input type="hidden" name="actif" value="1">
+        <input type="submit" class="btn" value="Publier l'enchère">
         <!-- Restante dos campos, como imagens, podem ser adicionados aqui -->
-        <input type="submit" class="btn" value="Ajouter">
     </form>
 </div>
 

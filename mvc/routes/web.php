@@ -13,16 +13,20 @@ Route::get('/user/index', 'UserController@index');
 Route::get('/user/create', 'UserController@create');
 Route::post('/user/create', 'UserController@store');
 
-
+//timbre
 Route::get('/timbre/index', 'TimbreController@index');
 Route::get('/timbre/create', 'TimbreController@create');
 Route::post('/timbre/create', 'TimbreController@store');
-
 Route::get('/timbre/edit', 'TimbreController@edit');
 Route::post('/timbre/edit', 'TimbreController@update');
-
 Route::get('/timbre/show', 'TimbreController@show');
 Route::get('/timbre/delete', 'TimbreController@delete');
+
+//enchere
+Route::get('/enchere/create', 'EnchereController@create');
+Route::post('/enchere/create', 'EnchereController@store');
+
+
 
 Route::get('/login', 'AuthController@index');
 Route::post('/login', 'AuthController@store');
