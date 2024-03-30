@@ -33,9 +33,8 @@ class TimbreController
         $validator->field('description', $data['description'])->required()->max(250);
         $validator->field('etat', $data['etat'])->required()->max(45);
         $validator->field('certifie', $data['certifie']);
-        $validator->field('prix', $data['prix'])->required();
+        
         $validator->field('categorie', $data['categorie'])->required()->max(45);
-        $validator->field('stampee_enchere_id', $data['stampee_enchere_id'])->required();
         $validator->field('stampee_utilisateur_id', $data['stampee_utilisateur_id'])->required();
 
         if ($validator->isSuccess()) {
@@ -115,4 +114,54 @@ class TimbreController
             return View::render('error', ['message' => 'Could not find this data']);
         }
     }
+    public function delete($data)
+    {
+       //var_dump($data);
+        $timbre = new  Timbre;
+        $delete = $timbre->delete($data['id']);
+        if ($delete) {
+            return View::redirect('timbre/');
+        } else {
+
+            return View::render('error');
+        }
+    }
+    public function edit($data = []){
+        if(isset($data['id']) && $data['id']!=null){
+            $timbre = new Timbre;
+            $selectId = $timbre->selectId($data['id']);
+            if($selectId){
+                return View::render('timbre/edit', ['timbre' => $selectId]);
+            }else{
+                return View::render('error');
+            }
+        }else{
+            return View::render('error', ['message'=>'Could not find this data']);
+        }
+    }
+    public function update($data, $get) {
+        $validator = new Validator;
+        $validator->field('titre', $data['titre'])->required()->max(100);
+        $validator->field('date', $data['date'])->required();
+        $validator->field('description', $data['description'])->required()->max(250);
+        $validator->field('etat', $data['etat'])->required()->max(45);
+        $validator->field('certifie', $data['certifie']);
+        $validator->field('categorie', $data['categorie'])->required()->max(45);
+        $validator->field('stampee_utilisateur_id', $data['stampee_utilisateur_id'])->required();
+    
+        if ($validator->isSuccess()) {
+            $timbre = new Timbre;
+            $update = $timbre->update($data, $get['id']);
+    
+            if ($update) {
+                return View::redirect('timbre/show?id=' . $get['id']);
+            } else {
+                return View::render('error');
+            }
+        } else {
+            $errors = $validator->getErrors();
+            return View::render('timbre/edit', ['errors' => $errors, 'timbre' => $data]);
+        }
+    }
+    
 }

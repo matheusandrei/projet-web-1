@@ -12,10 +12,10 @@
 
         <img src="{{base}}/images/{{image}}">
 
-        <div class="btns-editer-produit">
-            <a href="{{base}}/product/edit?id={{product.id}}" class="btn block">Edit</a>
-            <form action="{{base}}/product/delete" method="post">
-                <input type="hidden" name="id" value="{{ product.id }}">
+        <div class="btns-editer-timbre">
+            <a href="{{base}}/timbre/edit?id={{timbre.id}}" class="btn block">Edit</a>
+            <form action="{{base}}/timbre/delete?id={{timbre.id}}" method="get">
+                <input type="hidden" name="id" value="{{ timbre.id }}">
                 <button class="btn block red">Delete</button>
             </form>
         </div>

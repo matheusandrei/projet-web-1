@@ -15,7 +15,6 @@
             <th>Certifié</th>
             <th>Categorie</th>
             <th>Condition</th>
-            <th>Prix</th>
         </tr>
 
         {% for timbre in timbre%}
@@ -29,7 +28,6 @@
             <td>{{ timbre['certifie'] }}</td>
             <td>{{ timbre['categorie'] }}</td>
             <td>{{ timbre['etat'] }}</td>
-            <td>{{ timbre['prix'] }}</td>
 
 
         </tr>

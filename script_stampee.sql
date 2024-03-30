@@ -18,22 +18,6 @@ CREATE SCHEMA IF NOT EXISTS `stampee` DEFAULT CHARACTER SET utf8mb4 ;
 USE `stampee` ;
 
 -- -----------------------------------------------------
--- Table `stampee`.`stampee_enchere`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `stampee`.`stampee_enchere` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `prix_courrant` INT(11) NOT NULL,
-  `date_debut` DATE NOT NULL,
-  `date_fin` DATE NOT NULL,
-  `actif` TINYINT(4) NOT NULL,
-  `coup_de_coeur` TINYINT(4) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 4
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
 -- Table `stampee`.`stampee_privilege`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stampee`.`stampee_privilege` (
@@ -68,29 +52,6 @@ DEFAULT CHARACTER SET = utf8mb4;
 
 
 -- -----------------------------------------------------
--- Table `stampee`.`favoris_stampee`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `stampee`.`favoris_stampee` (
-  `stampee_utilisateur_id` INT(11) NOT NULL,
-  `stampee_enchere_id` INT(11) NOT NULL,
-  PRIMARY KEY (`stampee_utilisateur_id`, `stampee_enchere_id`),
-  INDEX `fk_stampee_utilisateur_has_stampee_enchere_stampee_enchere2_idx` (`stampee_enchere_id` ASC) ,
-  INDEX `fk_stampee_utilisateur_has_stampee_enchere_stampee_utilisat_idx` (`stampee_utilisateur_id` ASC) ,
-  CONSTRAINT `fk_stampee_utilisateur_has_stampee_enchere_stampee_enchere2`
-    FOREIGN KEY (`stampee_enchere_id`)
-    REFERENCES `stampee`.`stampee_enchere` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_stampee_utilisateur_has_stampee_enchere_stampee_utilisateur2`
-    FOREIGN KEY (`stampee_utilisateur_id`)
-    REFERENCES `stampee`.`stampee_utilisateur` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
 -- Table `stampee`.`stampee_timbre`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stampee`.`stampee_timbre` (
@@ -103,25 +64,64 @@ CREATE TABLE IF NOT EXISTS `stampee`.`stampee_timbre` (
   `dimensions` VARCHAR(45) NULL DEFAULT NULL,
   `certifie` TINYINT(4) NOT NULL,
   `categorie` VARCHAR(45) NOT NULL,
-  `stampee_enchere_id` INT(11) NOT NULL,
   `stampee_utilisateur_id` INT(11) NOT NULL,
   `etat` VARCHAR(45) NOT NULL,
   `prix` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_stampee_timbre_stampee_enchere1_idx` (`stampee_enchere_id` ASC) ,
   INDEX `fk_stampee_timbre_stampee_utilisateur1_idx` (`stampee_utilisateur_id` ASC) ,
-  CONSTRAINT `fk_stampee_timbre_stampee_enchere1`
-    FOREIGN KEY (`stampee_enchere_id`)
-    REFERENCES `stampee`.`stampee_enchere` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_stampee_timbre_stampee_utilisateur1`
     FOREIGN KEY (`stampee_utilisateur_id`)
     REFERENCES `stampee`.`stampee_utilisateur` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 50
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `stampee`.`stampee_enchere`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `stampee`.`stampee_enchere` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `prix_courrant` INT(11) NOT NULL,
+  `date_debut` DATE NOT NULL,
+  `date_fin` DATE NOT NULL,
+  `actif` TINYINT(4) NOT NULL,
+  `coup_de_coeur` TINYINT(4) NOT NULL,
+  `stampee_timbre_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_stampee_enchere_stampee_timbre1_idx` (`stampee_timbre_id` ASC) ,
+  CONSTRAINT `fk_stampee_enchere_stampee_timbre1`
+    FOREIGN KEY (`stampee_timbre_id`)
+    REFERENCES `stampee`.`stampee_timbre` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `stampee`.`favoris_stampee`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `stampee`.`favoris_stampee` (
+  `stampee_utilisateur_id` INT(11) NOT NULL,
+  `stampee_enchere_id` INT(11) NOT NULL,
+  PRIMARY KEY (`stampee_utilisateur_id`, `stampee_enchere_id`),
+  INDEX `fk_stampee_utilisateur_has_stampee_enchere_stampee_enchere2_idx` (`stampee_enchere_id` ASC) ,
+  INDEX `fk_stampee_utilisateur_has_stampee_enchere_stampee_utilisat_idx` (`stampee_utilisateur_id` ASC) ,
+  CONSTRAINT `fk_stampee_utilisateur_has_stampee_enchere_stampee_enchere2`
+    FOREIGN KEY (`stampee_enchere_id`)
+    REFERENCES `stampee`.`stampee_enchere` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_stampee_utilisateur_has_stampee_enchere_stampee_utilisateur2`
+    FOREIGN KEY (`stampee_utilisateur_id`)
+    REFERENCES `stampee`.`stampee_utilisateur` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `stampee`.`image_stampee` (
   CONSTRAINT `fk_image_stampee_timbre1`
     FOREIGN KEY (`stampee_timbre_id`)
     REFERENCES `stampee`.`stampee_timbre` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 30
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `stampee`.`mise_stampee` (
   CONSTRAINT `fk_stampee_utilisateur_has_stampee_enchere_stampee_enchere1`
     FOREIGN KEY (`stampee_enchere_id`)
     REFERENCES `stampee`.`stampee_enchere` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_stampee_utilisateur_has_stampee_enchere_stampee_utilisateur1`
     FOREIGN KEY (`stampee_utilisateur_id`)

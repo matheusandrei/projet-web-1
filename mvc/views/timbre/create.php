@@ -42,12 +42,6 @@
         <label>Catégorie
             <input type="text" name="categorie" value="{{ timbre.categorie }}">
         </label>
-        <label>Prix
-            <input type="number" name="prix" value="{{ timbre.prix }}">
-        </label>
-        <label>ID de l'enchère
-            <input type="text" name="stampee_enchere_id" value="{{ timbre.stampee_enchere_id }}">
-        </label>
         <label>Image Principale:
             <input type="file" name="image_principale">
         </label>
