@@ -25,8 +25,8 @@ Route::get('/timbre/delete', 'TimbreController@delete');
 //enchere
 Route::get('/enchere/create', 'EnchereController@create');
 Route::post('/enchere/create', 'EnchereController@store');
-
-
+Route::get('/enchere/index', 'EnchereController@index');
+Route::get('/enchere/show', 'EnchereController@show');
 
 Route::get('/login', 'AuthController@index');
 Route::post('/login', 'AuthController@store');
