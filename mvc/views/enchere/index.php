@@ -1,4 +1,4 @@
-{{ include('./layouts/header.php', {title: 'Accueil'})}}
+{{ include('./layouts/header.php', {title: 'Catalogue'})}}
 <main class="catalogue-main">
     <h1>CATALOGUE</h1>
     <div class="contenu-catalogue">
@@ -40,7 +40,7 @@
                                 src="{{ base }}/images/{{timbre['image']}}" alt="Photo timbre usa" /></a>
                     </div>
 
-                    <div class="card__prix">Offre actuelle: <small>{{timbre['enchere']}}$</small></div>
+                    <div class="card__prix">Offre actuelle: <small>{{enchere['prix']}}$</small></div>
                     <div class="hourglass">
                         <div class="card__temps">
                             Temps restant: <small> 23h21min</small>

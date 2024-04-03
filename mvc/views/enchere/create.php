@@ -23,8 +23,7 @@
         </label>
         <label>Timbre
             <select name="stampee_timbre_id">
-                <!-- Opções de Timbre podem ser preenchidas dinamicamente dependendo da sua lógica -->
-                <!-- Exemplo: -->
+
                 < {% for timbre in timbres %} <option value="{{ timbre.id }}">{{ timbre.titre }}</option>
                     {% endfor %}
             </select>
@@ -32,7 +31,7 @@
         <input type="hidden" name="coup_de_coeur" value="0">
         <input type="hidden" name="actif" value="1">
         <input type="submit" class="btn" value="Publier l'enchère">
-        <!-- Restante dos campos, como imagens, podem ser adicionados aqui -->
+
     </form>
 </div>
 

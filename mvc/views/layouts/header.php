@@ -34,8 +34,7 @@
             <ul>
                 <li><i class="fa-solid fa-bars icon-menu"></i></li>
                 <li><a href="{{ base }}">Accueil</a></li>
-                <li><a href="catalogue.html">Catalogue</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="{{ base }}/enchere/index/">Catalogue</a></li>
                 <li><a href="{{ base }}/user/create/">Devenir Membre</a></li>
                 <li><a href="mission.html">À propos</a></li>
                 {% if guest %}

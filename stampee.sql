@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `stampee`.`stampee_utilisateur` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
+AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = utf8mb4;
 
 
@@ -66,7 +66,6 @@ CREATE TABLE IF NOT EXISTS `stampee`.`stampee_timbre` (
   `categorie` VARCHAR(45) NOT NULL,
   `stampee_utilisateur_id` INT(11) NOT NULL,
   `etat` VARCHAR(45) NOT NULL,
-  `prix` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_stampee_timbre_stampee_utilisateur1_idx` (`stampee_utilisateur_id` ASC) ,
   CONSTRAINT `fk_stampee_timbre_stampee_utilisateur1`
@@ -75,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `stampee`.`stampee_timbre` (
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 50
+AUTO_INCREMENT = 55
 DEFAULT CHARACTER SET = utf8mb4;
 
 
@@ -84,7 +83,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stampee`.`stampee_enchere` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `prix_courrant` INT(11) NOT NULL,
+  `prix` INT(11) NOT NULL,
   `date_debut` DATE NOT NULL,
   `date_fin` DATE NOT NULL,
   `actif` TINYINT(4) NOT NULL,
@@ -98,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `stampee`.`stampee_enchere` (
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb4;
 
 
@@ -108,6 +107,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `stampee`.`favoris_stampee` (
   `stampee_utilisateur_id` INT(11) NOT NULL,
   `stampee_enchere_id` INT(11) NOT NULL,
+  `favoris` TINYINT(4) NOT NULL,
   PRIMARY KEY (`stampee_utilisateur_id`, `stampee_enchere_id`),
   INDEX `fk_stampee_utilisateur_has_stampee_enchere_stampee_enchere2_idx` (`stampee_enchere_id` ASC) ,
   INDEX `fk_stampee_utilisateur_has_stampee_enchere_stampee_utilisat_idx` (`stampee_utilisateur_id` ASC) ,
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `stampee`.`image_stampee` (
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 30
+AUTO_INCREMENT = 35
 DEFAULT CHARACTER SET = utf8mb4;
 
 

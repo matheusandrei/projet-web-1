@@ -16,12 +16,12 @@ class EnchereController
     public function create()
     {
         //if($_SESSION['privilege_id'] == 1){
-            $timbre = new Timbre;
-            $timbre = $timbre->select('titre');
-            return View::render('enchere/create', ['timbres' => $timbre]);
+        $timbre = new Timbre;
+        $timbre = $timbre->select();
+        return View::render('enchere/create', ['timbres' => $timbre]);
     }
 
-    
+
     public function store($data)
     {
         var_dump($data);
@@ -54,22 +54,20 @@ class EnchereController
         $donnes = [];
 
         foreach ($encheres as $enchere) {
-            
+
             $timbre = new Timbre;
             $selectId = $timbre->selectId($enchere['stampee_timbre_id']);
             $image = $timbre->getImg($enchere['stampee_timbre_id']);
             if ($selectId) {
-               
+
                 $donnes[] = [
+                    'enchere'=>$enchere,
                     'timbre' => $selectId,
                     'image' => $image,
-                    
+
                 ];
-                var_dump($donnes);
-                echo'<br>'; 
-                echo'<br>';   
             } else {
-            
+
                 return View::render('error');
             }
         }
@@ -84,13 +82,13 @@ class EnchereController
             $enchere = new Enchere;
             $timbre = new Timbre;
             $selectId = $timbre->selectId($data['id']);
-            
+
             $image = $timbre->getImg($data['id']);
-            $enchere = $enchere ->selectId($data['id']);
+            $enchere = $enchere->selectId($data['id']);
             var_dump($enchere);
 
             if ($selectId) {
-                return View::render('enchere/show', ['timbre' => $selectId, 'image' => $image, 'enchere' =>$enchere ]);
+                return View::render('enchere/show', ['timbre' => $selectId, 'image' => $image, 'enchere' => $enchere]);
             } else {
                 return View::render('error');
             }
@@ -98,5 +96,4 @@ class EnchereController
             return View::render('error', ['message' => 'Could not find this data']);
         }
     }
-    
-    }
+}
