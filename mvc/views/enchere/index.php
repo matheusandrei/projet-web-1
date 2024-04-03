@@ -31,16 +31,17 @@
         </aside>
         <section class="catalogue">
             <section class="grid-cards catalogue-encheres">
-                {% for timbre in timbres %} <div class="card">
+                {% for donne in donnes %} <div class="card">
                     <div class="card__title">
-                        <h2>{{timbre['timbre'].titre}}</h2>
+                        <h2>{{donne['timbre'].titre}}</h2>
                     </div>
                     <div class="card__image">
-                        <a href="{{ base }}/enchere/show?id={{ timbre['timbre']['id'] }}"><img
-                                src="{{ base }}/images/{{timbre['image']}}" alt="Photo timbre usa" /></a>
+                        <a href="{{ base }}/enchere/show?id={{ donne['timbre']['id'] }}"><img
+                                src="{{ base }}/images/{{donne['image']}}" alt="{{donne['timbre'].titre}}" /></a>
                     </div>
 
-                    <div class="card__prix">Offre actuelle: <small>{{enchere['prix']}}$</small></div>
+                    <div class="card__prix">Offre actuelle: <small>{{ donne['enchere']['prix'] }}$</small></div>
+
                     <div class="hourglass">
                         <div class="card__temps">
                             Temps restant: <small> 23h21min</small>

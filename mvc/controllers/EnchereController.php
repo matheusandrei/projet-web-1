@@ -24,13 +24,12 @@ class EnchereController
 
     public function store($data)
     {
-        var_dump($data);
         // Validação dos dados
         $validator = new Validator;
         $validator->field('prix', $data['prix'])->required();
         $validator->field('date_debut', $data['date_debut'])->required();
         $validator->field('date_fin', $data['date_fin'])->required();
-        $validator->field('stampee_timbre_id', $data['stampee_timbre_id'])->required();
+        $validator->field('stampee_timbre_id', $data['stampee_timbre_id'])->required()->unique('Enchere');
 
         if ($validator->isSuccess()) {
             $enchere = new Enchere;
@@ -38,30 +37,32 @@ class EnchereController
             if ($insert) {
                 return View::redirect('enchere/index');
             } else {
+
                 return View::render('error');
             }
         } else {
             // Si des erreurs de validation se produisent, retournez à la page de création avec les erreurs
             $errors = $validator->getErrors();
-            return View::render('enchere/create', ['errors' => $errors, 'timbre' => $data]);
+            $timbre = new Timbre;
+            $timbre = $timbre->select();
+            return View::render('enchere/create', ['errors' => $errors, 'timbre' => $timbre]);
         }
     }
     public function index()
     {
         $enchere = new Enchere;
         $encheres = $enchere->select();
-
+        
         $donnes = [];
-
         foreach ($encheres as $enchere) {
-
+            
             $timbre = new Timbre;
             $selectId = $timbre->selectId($enchere['stampee_timbre_id']);
             $image = $timbre->getImg($enchere['stampee_timbre_id']);
             if ($selectId) {
 
                 $donnes[] = [
-                    'enchere'=>$enchere,
+                    'enchere' => $enchere,
                     'timbre' => $selectId,
                     'image' => $image,
 
@@ -72,7 +73,7 @@ class EnchereController
             }
         }
 
-        return View::render('enchere/index', ['timbres' => $donnes]);
+        return View::render('enchere/index', ['donnes' => $donnes]);
     }
     public function show($data = [])
     {
@@ -82,13 +83,13 @@ class EnchereController
             $enchere = new Enchere;
             $timbre = new Timbre;
             $selectId = $timbre->selectId($data['id']);
-
+            $selectEnchere = $enchere->selectIdTimbreId($data['id']);
             $image = $timbre->getImg($data['id']);
-            $enchere = $enchere->selectId($data['id']);
-            var_dump($enchere);
+
+
 
             if ($selectId) {
-                return View::render('enchere/show', ['timbre' => $selectId, 'image' => $image, 'enchere' => $enchere]);
+                return View::render('enchere/show', ['timbre' => $selectId, 'image' => $image, 'enchere' => $selectEnchere]);
             } else {
                 return View::render('error');
             }

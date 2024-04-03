@@ -109,4 +109,18 @@ abstract class CRUD extends \PDO {
             return false;
         }
     }
-}
+    final public function selectIdTimbreId($timbreId)
+    {
+        $sql = "SELECT * FROM $this->table WHERE stampee_timbre_id = :timbreId";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":timbreId", $timbreId);
+        $stmt->execute();
+        $count = $stmt->rowCount();
+        if ($count == 1) {
+            return $stmt->fetch();
+        } else {
+            return null;
+    }
+
+    }
+    }
