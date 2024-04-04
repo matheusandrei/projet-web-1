@@ -120,7 +120,7 @@ class TimbreController
         $timbre = new  Timbre;
         $delete = $timbre->delete($data['id']);
         if ($delete) {
-            return View::redirect('timbre/');
+            return View::redirect('timbre/index');
         } else {
 
             return View::render('error');

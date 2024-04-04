@@ -10,7 +10,7 @@
         </ul>
     </div>
     {% endif %}
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" class="form" enctype="multipart/form-data">
         <h2>Ajouter un timbre</h2>
         <label>Titre
             <input type=" text" name="titre" value="{{ timbre.titre }}">

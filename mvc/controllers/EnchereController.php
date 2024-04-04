@@ -35,7 +35,7 @@ class EnchereController
             $enchere = new Enchere;
             $insert = $enchere->insert($data);
             if ($insert) {
-                return View::redirect('enchere/index');
+                return View::redirect('enchere');
             } else {
 
                 return View::render('error');
@@ -86,7 +86,7 @@ class EnchereController
             $selectEnchere = $enchere->selectIdTimbreId($data['id']);
             $image = $timbre->getImg($data['id']);
 
-
+            
 
             if ($selectId) {
                 return View::render('enchere/show', ['timbre' => $selectId, 'image' => $image, 'enchere' => $selectEnchere]);
@@ -97,4 +97,5 @@ class EnchereController
             return View::render('error', ['message' => 'Could not find this data']);
         }
     }
+   
 }

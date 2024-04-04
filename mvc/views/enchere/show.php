@@ -19,12 +19,16 @@
             <li>Dimensions <span>{{ timbre.dimensions }}</span></li>
             <li>Description <span>{{ timbre.description }}</span></li>
             <li>Offre actuelle {{ enchere['prix'] }} </li>
+        
+            <li></li>
         </ul>
         <hr />
+        <p>Date de debut {{enchere['date_debut']}}<p>
+        <p>Date de fin {{enchere['date_fin']}}<p>
         <form method="post" action="{{ base }}/mise/store">
 
             <label for="prix_mise">Placez une mise
-                <input type="number" name="prix_mise" min="{{enchere.prix}}" />
+                <input type="number" name="prix_mise" min="{{enchere.prix}}" placeholder="{{enchere.prix}}" />
             </label>
             <button type="submit" class="ajouter-panier">Miser</button>
             <input type="hidden" name="date_heure" value="<?php echo date('Y-m-d H:i:s'); ?>">

@@ -8,7 +8,7 @@
         <p><span>Année:</span> {{ timbre.annee }}</p>
         <p><span>Condition:</span> {{ timbre.etat }}</p>
         <p><span>Certifié:</span> {{ timbre.certifie }}</p>
-        <p><span>Prix:</span> {{ timbre.prix }}</p>
+      
 
         <img src="{{base}}/images/{{image}}">
 

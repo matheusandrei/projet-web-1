@@ -10,7 +10,7 @@
         </ul>
     </div>
     {% endif %}
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" class="form" enctype="multipart/form-data">
         <h2>Ajouter une enchère</h2>
         <label>Prix Initial
             <input type="number" name="prix" value="{{ enchere.prix }}">
