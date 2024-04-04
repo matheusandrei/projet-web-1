@@ -150,12 +150,13 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- Table `stampee`.`mise_stampee`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stampee`.`mise_stampee` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `stampee_utilisateur_id` INT(11) NOT NULL,
   `stampee_enchere_id` INT(11) NOT NULL,
   `date` DATE NULL DEFAULT NULL,
   `heure` DATETIME NULL DEFAULT NULL,
   `prix` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`stampee_utilisateur_id`, `stampee_enchere_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_stampee_utilisateur_has_stampee_enchere_stampee_enchere1_idx` (`stampee_enchere_id` ASC) ,
   INDEX `fk_stampee_utilisateur_has_stampee_enchere_stampee_utilisat_idx` (`stampee_utilisateur_id` ASC) ,
   CONSTRAINT `fk_stampee_utilisateur_has_stampee_enchere_stampee_enchere1`
@@ -170,6 +171,8 @@ CREATE TABLE IF NOT EXISTS `stampee`.`mise_stampee` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
+
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -28,6 +28,11 @@ Route::post('/enchere/create', 'EnchereController@store');
 Route::get('/enchere/index', 'EnchereController@index');
 Route::get('/enchere/show', 'EnchereController@show');
 
+
+//mise
+Route::post('/mise/store', 'MiseController@store');
+
+
 Route::get('/login', 'AuthController@index');
 Route::post('/login', 'AuthController@store');
 Route::get('/logout', 'AuthController@delete');

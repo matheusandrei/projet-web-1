@@ -65,7 +65,7 @@ class EnchereController
                     'enchere' => $enchere,
                     'timbre' => $selectId,
                     'image' => $image,
-
+                    
                 ];
             } else {
 

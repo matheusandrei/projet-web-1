@@ -21,37 +21,23 @@
             <li>Offre actuelle {{ enchere['prix'] }} </li>
         </ul>
         <hr />
-        <div class="achat">
-            <label for="">Placez une mise <input type="number" name="" id="" /></label>
-            <button class="ajouter-panier">Miser</button>
-        </div>
+        <form method="post" action="{{ base }}/mise/store">
+
+            <label for="prix_mise">Placez une mise
+                <input type="number" name="prix_mise" min="{{enchere.prix}}" />
+            </label>
+            <button type="submit" class="ajouter-panier">Miser</button>
+            <input type="hidden" name="date_heure" value="<?php echo date('Y-m-d H:i:s'); ?>">
+            <input type="hidden" name="stampee_utilisateur_id" value="{{session.user_id}}">
+            <input type="hidden" name="stampee_enchere_id" value="{{ enchere['id'] }}">
+        </form>
         <hr />
         <h3>Certifié : <span>{{ timbre.certifie }}</span></h3>
         <h3>Categorie : <span>{{ timbre.categorie }}</span></h3>
-        <h3>Partager : <i class="fa-solid fa-share"></i></h3>
+        <h3>Partager : <i class=" fa-solid fa-share"></i></h3>
     </div>
 </section>
 
-<section class="container-timbres">
-    <h1>Enchères actives</h1>
-    <div class="carrousel">
-        <i class="fa-solid fa-chevron-left fa-2x"></i>
-        <div class="carrousel__card">
-            <div class="carrousel__title">
-                <h2>{{ timbre.titre }}</h2>
-            </div>
-            <div class="carrousel__image">
-                <img src="{{ base }}/images/{{ enchere1.image }}" alt="" />
-            </div>
-            <div class="carrousel__prix">Prix: <small>{{ enchere.prix }}</small></div>
-            <div class="hourglass">
-                <div class="carrousel__temps">Temps restant: <small>{{ enchere1.temps_restant }}</small></div>
-                <i class="fa-regular fa-hourglass-half"></i>
-            </div>
-        </div>
-        <!-- Répétez pour chaque enchère -->
-        <i class="fa-solid fa-chevron-right fa-2x"></i>
-    </div>
-</section>
+
 
 {% include 'layouts/footer.php' %}
