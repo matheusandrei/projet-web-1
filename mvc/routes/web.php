@@ -2,11 +2,8 @@
 
 use App\Controllers;
 use App\Routes\Route;
-
-Route::get('/', 'HomeController@index');
-
 //accueil
-Route::get('/home', 'HomeController@home');
+Route::get('/', 'HomeController@index');
 
 //APropos
 Route::get('/aPropos/index', 'AProposController@index');

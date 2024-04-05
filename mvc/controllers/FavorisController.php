@@ -14,7 +14,7 @@ class FavorisController
 
     public function store($data)
     {
-        var_dump($data);
+        //var_dump($data);
         
         
         // Validação dos dados
@@ -31,7 +31,7 @@ class FavorisController
             
 
             if ($insert) {
-                echo"inseriu";
+                
             } else {
 
                 return View::render('error');

@@ -11,8 +11,4 @@ class HomeController {
        View::render('home' );
     }
 
-    public function home(){
-        $data = 'Hello from HomeController';
-        include 'views/home.php';
-    }
 }
