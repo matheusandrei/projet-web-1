@@ -36,7 +36,7 @@
                 <li><a href="{{ base }}">Accueil</a></li>
                 <li><a href="{{ base }}/enchere/index/">Catalogue</a></li>
                 <li><a href="{{ base }}/user/create/">Devenir Membre</a></li>
-                <li><a href="mission.html">À propos</a></li>
+                <li><a href="{{ base }}/aPropos/index">À propos</a></li>
                 {% if guest %}
                 <li><a href="{{ base }}/login">Login</a></li>
                 {% else %}

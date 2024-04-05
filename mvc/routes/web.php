@@ -5,13 +5,22 @@ use App\Routes\Route;
 
 Route::get('/', 'HomeController@index');
 
+//accueil
 Route::get('/home', 'HomeController@home');
 
+//APropos
+Route::get('/aPropos/index', 'AProposController@index');
 
-
+//user
 Route::get('/user/index', 'UserController@index');
 Route::get('/user/create', 'UserController@create');
 Route::post('/user/create', 'UserController@store');
+
+
+//login
+Route::get('/login', 'AuthController@index');
+Route::post('/login', 'AuthController@store');
+Route::get('/logout', 'AuthController@delete');
 
 //timbre
 Route::get('/timbre/index', 'TimbreController@index');
@@ -32,9 +41,11 @@ Route::get('/enchere/show', 'EnchereController@show');
 //mise
 Route::post('/mise/store', 'MiseController@store');
 
+//Favoris
+Route::post('/favoris/store', 'FavorisController@store');
 
-Route::get('/login', 'AuthController@index');
-Route::post('/login', 'AuthController@store');
-Route::get('/logout', 'AuthController@delete');
+
+
+
 
 Route::dispatch();

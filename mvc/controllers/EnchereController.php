@@ -35,7 +35,7 @@ class EnchereController
             $enchere = new Enchere;
             $insert = $enchere->insert($data);
             if ($insert) {
-                return View::redirect('enchere');
+                return View::redirect('enchere/index');
             } else {
 
                 return View::render('error');

@@ -42,6 +42,13 @@
         <h3>Certifié : <span>{{ timbre.certifie }}</span></h3>
         <h3>Categorie : <span>{{ timbre.categorie }}</span></h3>
         <h3>Partager : <i class=" fa-solid fa-share"></i></h3>
+        <form method="post" action="{{ base }}/favoris/store">
+
+            <input type="hidden" name="stampee_utilisateur_id" value="{{session.user_id}}">
+            <input type="hidden" name="stampee_enchere_id" value="{{ enchere['id'] }}">
+            <button type="submit" class="favoris"><i class="fa-regular fa-heart"></i></button>
+        </form>
+
     </div>
 </section>
 

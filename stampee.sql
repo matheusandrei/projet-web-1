@@ -101,14 +101,12 @@ AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4;
 
 
--- -----------------------------------------------------
--- Table `stampee`.`favoris_stampee`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stampee`.`favoris_stampee` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `stampee_utilisateur_id` INT(11) NOT NULL,
   `stampee_enchere_id` INT(11) NOT NULL,
   `favoris` TINYINT(4) NOT NULL,
-  PRIMARY KEY (`stampee_utilisateur_id`, `stampee_enchere_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_stampee_utilisateur_has_stampee_enchere_stampee_enchere2_idx` (`stampee_enchere_id` ASC) ,
   INDEX `fk_stampee_utilisateur_has_stampee_enchere_stampee_utilisat_idx` (`stampee_utilisateur_id` ASC) ,
   CONSTRAINT `fk_stampee_utilisateur_has_stampee_enchere_stampee_enchere2`

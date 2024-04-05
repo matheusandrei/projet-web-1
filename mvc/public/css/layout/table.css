@@ -1,0 +1,43 @@
+
+.container-mes-timbres {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.table-mes-timbres {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.table-mes-timbres th, .table-mes-timbres td {
+    padding: 8px;
+    text-align: left;
+}
+
+.table-mes-timbres th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.table-mes-timbres tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-mes-timbres tr:hover {
+    background-color: #ddd;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:var(--color-success);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #519b61;
+}
