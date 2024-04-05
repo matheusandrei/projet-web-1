@@ -25,7 +25,7 @@ class TimbreController
 
     public function store($data)
     {
-        var_dump($data);
+        //var_dump($data);
         // Validação dos dados
         $validator = new Validator;
         $validator->field('titre', $data['titre'])->required()->max(100);

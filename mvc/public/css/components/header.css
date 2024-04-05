@@ -12,7 +12,7 @@ header {
     & form {
       margin-left: auto;
 
-      & input {
+      & input  {
         padding: var(--spacing-s);
         border-radius: var(--spacing-m);
         width: 350px;
@@ -88,7 +88,7 @@ header {
   header .nav-liens ul li i {
     display: block;
   }
-  input {
-    display: none;
+   .recherche{
+    display:none;
   }
 }

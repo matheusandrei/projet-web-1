@@ -18,6 +18,8 @@ class MiseController
 
     public function store($data)
     {
+        //var_dump($data);
+        
         // Validação dos dados
         $validator = new Validator;
         $validator->field('stampee_utilisateur_id', $data['stampee_utilisateur_id'])->required();
@@ -28,17 +30,16 @@ class MiseController
         if ($validator->isSuccess()) {
             $mise = new Mise;
             $insert = $mise->insert($data);
-            var_dump($data);
+            
             
 
             if ($insert) {
-                $timbre = new Timbre;
+                
                 $enchere = new Enchere;
                 $updatePrix = $enchere->updatePrix($data['prix_mise'], $data['stampee_enchere_id']);
-               
-
                 if ($updatePrix) {
-                    return View::render('enchere/show');
+                    return View::redirect("enchere/show?id={$data['timbre_id']}");
+                    
                 } else {
                     echo 'erro';
                 }

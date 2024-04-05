@@ -20,7 +20,7 @@
             <a href="{{base}}"><img src="{{asset}}/css/img/logos/logoLord 1.png" alt="logos" /></a>
             <form action="/" method="get">
                 <label for="recherche" class="sr-only">Rechercher :</label>
-                <input type="text" id="recherche" name="recherche" placeholder="Rechercher" />
+                <input type="text" class="recherche" name="recherche" placeholder="Rechercher" />
                 <button type="submit" name="recherche" class="search-button">
                     <i class="fa-solid fa-magnifying-glass" role="img" aria-label="icon de recherche"></i>
                 </button>

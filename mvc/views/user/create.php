@@ -10,7 +10,7 @@
         </ul>
     </div>
     {% endif %}
-    <form method="post">
+    <form method="post" class="form">
         <h2>Registration</h2>
         <label>Name
             <input type="text" name="nom" value="{{ user.nom}}">
